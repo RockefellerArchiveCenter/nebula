@@ -40,11 +40,11 @@ When you're done, shut down docker-compose:
 
 
 ### Other things you'll want to do:
-- With the container running, update your requirements file by running `docker-compose exec web pip freeze`, and replacing the contents of `requirements.txt` with the output.
 - Rename services in the docker-compose file so they have slightly less generic names.
-- Create a file called `config.py` in the main app directory to store local variables, and add it to `.gitignore`. You should add private settings to this file; see other Project Electron Django apps for examples.
+- Create a file called `config.py` in the main project directory to store local variables, and add it to `.gitignore`. You should add private settings to this file; see other Project Electron Django apps for examples.
 - Create a file called `config.py.example` which mirrors the structure of `config.py`. This helps to document which configs are required, and can also be used for automated unit testing.
 - Point your database at the Postgres database running as a separate service.
+- With the container running, update your requirements file by running `docker-compose exec web pip freeze`, and replacing the contents of `requirements.txt` with the output.
 - Before pushing code, remember to change your remotes!
 
 ## License
