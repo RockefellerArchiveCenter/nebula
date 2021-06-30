@@ -46,6 +46,7 @@ When you're done, shut down docker-compose:
 - Create a file called `config.py` in the main project directory to store local variables, and add it to `.gitignore`. You should add private settings to this file; see other Project Electron Django apps for examples.
 - Create a file called `config.py.example` which mirrors the structure of `config.py`. This helps to document which configs are required, and can also be used for automated unit testing.
 - Point your database at the Postgres database running as a separate service.
+- With [pre-commit](https://pre-commit.com/) installed, run `pre-commit install` to add git pre-commit hooks to your CI pipeline.
 - Before pushing code, remember to change your remotes!
 
 ## License
