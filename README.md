@@ -1,5 +1,5 @@
 # nebula
-A toolkit for [Project Electron](http://projectelectron.rockarch.org/) microservices, built with Django 2.x/Postgres/Python 3.6.
+A toolkit for [Project Electron](http://projectelectron.rockarch.org/) Postgres-backed Django microservices.
 
 ## What's here
 
