@@ -8,7 +8,7 @@ A toolkit for [Project Electron](http://projectelectron.rockarch.org/) Postgres-
 - `docker-compose.yml` - Docker Compose configuration
 - `entrypoint.sh` - A script which runs after the container starts up. If you want to add default objects or users, this is a good place to do it.
 - `requirements.in` - Minimal Python package requirements.
-- `wait-for-it.sh` - Makes the Django server wait until the Postgres service is up before attempting to start.
+- `wait-for-it.sh` - Tests if a TCP host and port are available, useful if you need to wait for a service to start up completely.
 
 ## Requirements
 
@@ -47,6 +47,9 @@ When you're done, shut down docker-compose:
 - Create a file called `config.py.example` which mirrors the structure of `config.py`. This helps to document which configs are required, and can also be used for automated unit testing.
 - Point your database at the Postgres database running as a separate service.
 - With [pre-commit](https://pre-commit.com/) installed, run `pre-commit install` to add git pre-commit hooks to your CI pipeline.
+- Ensure that the port exposed in `docker-compose.yml` match the port the app is running on in `entrypoint.sh` and the value of the `DJANGO_PORT` variable in `.travis.yml`.
+- Update the `CONTAINER`, `APPLICATION_NAME` variables in `.travis.yml` and uncomment out the commented job steps.
+- Add Travis CI environment variables for `DOCKER_USERNAME` and `DOCKER_PASSWORD` in the UI at <https://travis-ci.com>.
 - Before pushing code, remember to change your remotes!
 
 ## License

@@ -1,18 +1,23 @@
 language: python
-sudo: required
+cache: pip
 services:
   - docker
 env:
   global:
-    - DOCKER_COMPOSE_VERSION: 1.18.0
+    - CONTAINER: web
+    - APPLICATION_NAME: nebula
+    - DJANGO_PORT: 8000
 before_install:
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
-  - cp pleiades/config.py.example pleiades/config.py
+  - cp ${APPLICATION_NAME}/config.py.example ${APPLICATION_NAME}/config.py
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker-compose up -d
-  - sleep 20s
-install: true
-script:
-  - docker-compose exec web python manage.py test
+# install:
+#   - ./wait-for-it.sh $CONTAINER:$DJANGO_PORT -- docker-compose exec $CONTAINER pip install coverage pre-commit
+#   - docker-compose exec $CONTAINER pre-commit install
+# script:
+#   - docker-compose exec $CONTAINER pre-commit run --all-files --show-diff-on-failure
+#   - docker-compose exec $CONTAINER coverage run manage.py test
+# after_script:
+#   - docker-compose exec $CONTAINER coverage report --omit=*/migrations/* -m
+notifications:
+  email: false
