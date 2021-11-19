@@ -47,7 +47,8 @@ When you're done, shut down docker-compose:
 - Create a file called `config.py.example` which mirrors the structure of `config.py`. This helps to document which configs are required, and can also be used for automated unit testing.
 - Point your database at the Postgres database running as a separate service.
 - With [pre-commit](https://pre-commit.com/) installed, run `pre-commit install` to add git pre-commit hooks to your CI pipeline.
-- Ensure that the port exposed in `docker-compose.yml` match the port the app is running on in `entrypoint.sh` and the value of the `DJANGO_PORT` variable in `.travis.yml`.
+- Update the default values for the ports exposed in `docker-compose.yml` for local development.
+- Update the value of the `DJANGO_PORT` variable in `.travis.yml` for the deployed application.
 - Update the `CONTAINER`, `APPLICATION_NAME` variables in `.travis.yml` and uncomment out the commented job steps.
 - Add Travis CI environment variables for `DOCKER_USERNAME` and `DOCKER_PASSWORD` in the UI at <https://travis-ci.com>.
 - Before pushing code, remember to change your remotes!
